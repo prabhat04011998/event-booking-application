@@ -1,0 +1,8 @@
+{
+    "env":{
+        "MONGO_USER":"prabhat",
+        "MONGO_PASSWORD":"123",
+        "MONGO_DB":"react-event-booking"
+        
+    }
+}
