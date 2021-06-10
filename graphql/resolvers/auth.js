@@ -1,6 +1,7 @@
 const User=require('../../models/users');
 const bcrypt=require('bcryptjs');
 const {events} =require('./merge');
+const jwt=require('jsonwebtoken');
 
 module.exports={
     users:()=>{
@@ -38,5 +39,20 @@ module.exports={
         
 
     },
+    login: async ({email,password})=>{
+        const user=await User.findOne({email:email});
+        if(!user){
+            throw new Error("Email Not Found");
+        }
+        const isEqual=await bcrypt.compare(password,user.password);
+        if(!isEqual){
+            throw new Error("Incorrect Password!");
+        }
+        const token = jwt.sign({userId:user.id,email:user.email},'SOMESECRETSUPERKEY',{
+            expiresIn:'1h'
+        });
+        return {userId:user.id,token:token,tokenExpiration:1};
+
+    }
 
 }

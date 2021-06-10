@@ -17,6 +17,13 @@ const {buildSchema}= require('graphql');
             price:Float!
             creator:User!
         }
+        type AuthData{
+            userId:ID!
+            token:String!
+            tokenExpiration: Int!
+
+        }
+        
         type User{
             _id:ID!
             email:String!
@@ -42,6 +49,7 @@ const {buildSchema}= require('graphql');
             events:[Event!]!
             users:[User!]!
             bookings:[Booking!]!
+            login(email:String!,password:String!) : AuthData!
         }
         type RootMutation{
             createEvent(eventInput:EventInput):Event

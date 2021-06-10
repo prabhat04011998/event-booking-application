@@ -64,9 +64,9 @@ const events=(eventIds)=>{
     })
 }
 
-// exports.user=user;
-// exports.singleEvent=singleEvent;
-// exports.events=events;
+exports.user=user;
+exports.singleEvent=singleEvent;
+exports.events=events;
 
 exports.transformBooking=transformBooking;
 exports.transformEvent=transformEvent;

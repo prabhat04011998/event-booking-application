@@ -5,12 +5,20 @@ const mongoose=require('mongoose');
 const graphQlSchema=require('./graphql/schema/index');
 const graqhQlResolvers=require('./graphql/resolvers/index');
 
+//middleware function to check whether authenticated user or not
+const isAuth=require('./middleware/is-auth');
+
+
 const app=express();
 
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
+
+
+//using authentication middleware
+app.use(isAuth);
 
 //graphql endpoint hitting
 app.use('/graphql',graphqlHTTP({
